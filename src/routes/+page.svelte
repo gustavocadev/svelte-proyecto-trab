@@ -1,11 +1,36 @@
 <script lang="ts">
+  type Data = {
+    name: string;
+    email: string;
+    email2: string;
+    telephone: string;
+    message: string;
+  };
+
   const goToContact = () => {
     window.scrollTo(0, document.body.scrollHeight);
   };
 
   const handleSubmit = (e: any) => {
-    const data = new FormData(e.currentTarget);
-    const value = Object.fromEntries(data.entries());
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+
+    const data = Object.fromEntries(formData as any) as Data;
+
+    const { email, message, name, telephone, email2 } = data;
+    if (!email || !message || !name || !telephone) {
+      alert('Por favor, complete todos los campos');
+      return;
+    }
+
+    if (email2 !== email) {
+      alert('El email no coincide');
+      return;
+    }
+
+    alert(
+      `${data.name}, Gracias por contactarte, te responderemos a la brevedad`
+    );
+    e.currentTarget.reset();
   };
 </script>
 
@@ -167,24 +192,39 @@
     <section class="form__first-section">
       <label for=""
         ><span>Nombre</span>
-        <input type="text" placeholder="Nombre" name="name" />
+        <input
+          type="text"
+          placeholder="Nombre"
+          name="name"
+          class="text-black"
+        />
       </label>
 
       <label for=""
         ><span>Telefono</span>
-        <input type="text" placeholder="Telefo" name="telephone" />
+        <input
+          type="text"
+          placeholder="Telefo"
+          name="telephone"
+          class="text-black"
+        />
       </label>
     </section>
 
     <section class="form__second-section">
       <label for=""
         ><span>Correo</span>
-        <input type="email" name="email" />
+        <input type="email" name="email" class="text-black" />
+      </label>
+
+      <label for=""
+        ><span>Correo</span>
+        <input type="email" name="email2" class="text-black" />
       </label>
 
       <label for=""
         ><span>Mensaje</span>
-        <textarea name="message" />
+        <textarea name="message" class="text-black" />
       </label>
     </section>
     <section class="section-button">
