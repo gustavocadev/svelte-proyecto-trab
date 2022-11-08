@@ -1,36 +1,8 @@
 <script lang="ts">
-  type Data = {
-    name: string;
-    email: string;
-    email2: string;
-    telephone: string;
-    message: string;
-  };
+  import Form from '$lib/Form.svelte';
 
   const goToContact = () => {
     window.scrollTo(0, document.body.scrollHeight);
-  };
-
-  const handleSubmit = (e: any) => {
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-
-    const data = Object.fromEntries(formData as any) as Data;
-
-    const { email, message, name, telephone, email2 } = data;
-    if (!email || !message || !name || !telephone) {
-      alert('Por favor, complete todos los campos');
-      return;
-    }
-
-    if (email2 !== email) {
-      alert('El email no coincide');
-      return;
-    }
-
-    alert(
-      `${data.name}, Gracias por contactarte, te responderemos a la brevedad`
-    );
-    e.currentTarget.reset();
   };
 </script>
 
@@ -39,7 +11,7 @@
 </svelte:head>
 <section class="section-bg">
   <header class="section-bg__header-bg">
-    <h1 class="text-5xl">Diseño y desarrollo de aplicaciones web</h1>
+    <h1>Diseño y desarrollo de aplicaciones web</h1>
     <div class="section-bg__header-bg-location">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -61,9 +33,9 @@
       </svg>
       <p>Ilo, Moquegua</p>
     </div>
-    <button class="section-bg__header-bg-button" on:click={goToContact}
-      >Contactar</button
-    >
+    <button class="section-bg__header-bg-button">
+      <a href="#form">Contactar</a>
+    </button>
   </header>
   <div class="layer-black">
     <div class="img-background" />
@@ -186,62 +158,24 @@
       </p>
     </article>
   </section>
-  <h2 class="contact font-bold">Contacto</h2>
-  <form class="form" id="form" on:submit|preventDefault={handleSubmit}>
-    <h3 class="text-2xl py-2">Contactanos llenando todos los campos</h3>
-    <section class="form__first-section">
-      <label for=""
-        ><span>Nombre</span>
-        <input
-          type="text"
-          placeholder="Nombre"
-          name="name"
-          class="text-black"
-        />
-      </label>
-
-      <label for=""
-        ><span>Telefono</span>
-        <input
-          type="text"
-          placeholder="Telefo"
-          name="telephone"
-          class="text-black"
-        />
-      </label>
-    </section>
-
-    <section class="form__second-section">
-      <label for=""
-        ><span>Correo</span>
-        <input type="email" name="email" class="text-black" />
-      </label>
-
-      <label for=""
-        ><span>Correo</span>
-        <input type="email" name="email2" class="text-black" />
-      </label>
-
-      <label for=""
-        ><span>Mensaje</span>
-        <textarea name="message" class="text-black" />
-      </label>
-    </section>
-    <section class="section-button">
-      <button type="submit">Enviar</button>
-    </section>
-  </form>
+  <h2 class="contact">Contacto</h2>
+  <Form />
 </main>
 
 <style>
-  :global(.main-header) {
+  .main-header {
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  :global(.section-bg__header-bg) {
+  .main__header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .section-bg__header-bg {
     color: white;
     display: flex;
     flex-direction: column;
@@ -249,9 +183,16 @@
     align-items: center;
     height: 100%;
     position: absolute;
-    font-size: 30px;
     z-index: 150;
     width: 100%;
+    text-align: center;
+    gap: 10px;
+  }
+  .section-bg__header-bg h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
   }
 
   .section-bg__header-bg-location {
@@ -266,19 +207,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
     border-radius: 4px;
     outline: none;
     border: 0;
-    padding: 8px;
-    font-size: 25px;
+    padding: 0;
   }
+  .section-bg__header-bg-button a {
+    font-size: 22px;
+    text-decoration: none;
+    padding: 10px 16px;
+    color: black;
+  }
+
   .section-bg__header-bg-button:hover {
     background-color: #347e8a;
   }
 
   .header-bg h1 {
     margin: 10px;
+  }
+
+  .main-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f99a6;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .main-menu__item {
+    padding: 0 10px;
+  }
+
+  .main-menu__link {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
   }
 
   .img-background {
@@ -364,88 +330,6 @@
     flex-direction: column;
     padding: 10px;
     font-size: 40px;
-  }
-  .form h3 {
-    color: #f7bd45;
-  }
-
-  .form {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #757575;
-  }
-
-  .form input,
-  textarea {
-    padding: 10px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    flex-grow: 1;
-  }
-
-  .form__second-section textarea {
-    height: 100px;
-  }
-
-  .form__first-section {
-    width: 50%;
-    display: flex;
-  }
-
-  .form__first-section label input {
-    flex-grow: 1;
-  }
-
-  .form__first-section label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: white;
-  }
-
-  .form__second-section {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .form__second-section label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    color: white;
-  }
-  textarea {
-    margin-left: 0;
-    /* margin-right: 0; */
-  }
-
-  .form button {
-    margin: 10px;
-    padding: 10px 45px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3c96af;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  .form button:hover {
-    background-color: #347e8a;
-  }
-
-  .form .section-button {
-    padding: 10px;
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
+    font-weight: 600;
   }
 </style>

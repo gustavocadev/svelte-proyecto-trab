@@ -1,17 +1,17 @@
 <header class="main-header">Juan perez - Desarrollador web</header>
 <nav class="nav">
-  <ul class="mainMenu">
-    <li class="mainMenu__item">
-      <a href="/" class="mainMenu__link">Inicio</a>
+  <ul class="main-menu">
+    <li class="main-menu__item">
+      <a href="/" class="main-menu__link">Inicio</a>
     </li>
-    <li class="mainMenu__item">
-      <a href="/nosotros" class="mainMenu__link">Nosotros</a>
+    <li class="main-menu__item">
+      <a href="/nosotros" class="main-menu__link">Nosotros</a>
     </li>
-    <li class="mainMenu__item">
-      <a href="/clientes" class="mainMenu__link">Clientes</a>
+    <li class="main-menu__item">
+      <a href="/clientes" class="main-menu__link">Clientes</a>
     </li>
-    <li class="mainMenu__item">
-      <a href="/contactos" class="mainMenu__link">Contactos</a>
+    <li class="main-menu__item">
+      <a href="/contactos" class="main-menu__link">Contacto</a>
     </li>
   </ul>
 </nav>
@@ -22,11 +22,18 @@
 </footer>
 
 <style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
   :global(body) {
     margin: 0;
     font-family: 'Roboto', sans-serif;
   }
-  :global(.mainMenu) {
+  .main-header {
+    text-align: center;
+    padding: 0.5rem;
+  }
+  .main-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,22 +43,22 @@
     margin: 0;
   }
 
-  :global(.mainMenu__item) {
+  .main-menu__item {
     padding: 0 10px;
   }
 
-  :global(.mainMenu__link) {
+  .main-menu__link {
     color: white;
     padding: 10px;
     text-decoration: none;
   }
-  :global(footer) {
+  footer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10px;
-    font-size: 20px;
-    background-color: #c3d6f1;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #3f99a6;
   }
 </style>
