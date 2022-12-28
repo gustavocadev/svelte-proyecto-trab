@@ -1,9 +1,9 @@
 <script lang="ts">
   import Form from '$lib/Form.svelte';
 
-  const goToContact = () => {
-    window.scrollTo(0, document.body.scrollHeight);
-  };
+  // const goToContact = () => {
+  //   window.scrollTo(0, document.body.scrollHeight);
+  // };
 </script>
 
 <svelte:head>
@@ -281,7 +281,7 @@
   }
 
   .main {
-    margin-top: 500px;
+    margin-top: 350px;
   }
 
   .section-services {

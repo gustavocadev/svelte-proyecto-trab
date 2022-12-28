@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
+  import type { UserPlaceholderResponse } from 'src/types/UserPlaceholderReponse';
   import { onMount } from 'svelte';
 
-  let data = [];
+  let data: UserPlaceholderResponse[] = [];
 
   onMount(async () => {
     // get fake data
@@ -19,10 +20,10 @@
       <a href="#">
         <img
           alt="Placeholder"
-          class="block h-auto w-full"
-          src={`https://xsgames.co/randomusers/assets/avatars/male/${
-            idx + 1
-          }.jpg`}
+          class="block h-auto w-full "
+          width="200"
+          height="200"
+          src={`https://picsum.photos/300/30${idx}`}
         />
       </a>
       <header
